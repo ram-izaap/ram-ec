@@ -1,0 +1,8 @@
+{
+  "name": "eclincher",
+  "app_id": "",
+  "watchPatterns": [
+    "www/dist/*",
+    "!www/css/**/*"
+  ]
+}

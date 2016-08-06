@@ -1,0 +1,50 @@
+<ion-view title="Home">
+    <ion-side-menus enable-menu-with-back-views="true">
+
+      <ion-side-menu side="right">
+        <ion-header-bar class="bar-positive">
+          <h1 class="title">Side Menu</h1>
+        </ion-header-bar>
+        <ion-content>
+          <ion-list ng-show="menuItems.length">
+            <ion-item menu-close ng-repeat="item in menuItems"  
+              item="item" ui-sref="{{item.action}}" >{{item.label}}
+            </ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-side-menu>
+
+      <ion-side-menu-content> 
+        <ion-nav-bar class="bar-positive">
+            <ion-nav-back-button>
+            </ion-nav-back-button>
+            <ion-nav-buttons side="right">
+              <button class="button button-icon button-clear ion-navicon" menu-toggle="right">
+              </button>
+            </ion-nav-buttons>
+        </ion-nav-bar>
+
+        <ion-tabs class="tabs-icon-top tabs-positive {{$root.hideTabs}}">
+
+          <ion-tab title="Home" icon="ion-home" ui-sref="tabs.home">
+            <ion-nav-view name="home-tab"></ion-nav-view>
+          </ion-tab>
+
+          <ion-tab title="Publishing" icon="ion-compose" ui-sref="tabs.publishing" >
+            <ion-nav-view name="publishing-tab"></ion-nav-view>
+          </ion-tab>
+
+          <ion-tab title="Inbox" icon="ion-archive" ui-sref="tabs.inbox" >
+            <ion-nav-view name="inbox-tab"></ion-nav-view>
+          </ion-tab>
+
+          <ion-tab title="Feeds" icon="ion-ios-book" ui-sref="tabs.feeds" >
+            <ion-nav-view name="feeds-tab"></ion-nav-view>
+          </ion-tab>
+
+        </ion-tabs>              
+        <!--<ion-nav-view name="menuContent"></ion-nav-view>-->
+      </ion-side-menu-content>
+
+    </ion-side-menus>
+</ion-view> 

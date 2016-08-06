@@ -1,0 +1,85 @@
+
+/*.list .item.item-accordion {
+  line-height: 38px;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: 0.09s all linear;
+}
+.list .item.item-accordion.ng-hide {
+  line-height: 0px;
+}
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+  display: block !important;
+}*/
+
+.container-side-menu .button {
+  font-size: 10px;
+  line-height: 10px; // Add
+}
+.container-side-menu .button-icon .icon {
+  display: block;
+  font-size: 30px;
+  margin-bottom: 3px !important;
+}
+
+.home-page .item-icon-left .icon{left: 0px;font-size: 20px;}
+.home-page .item-icon-left {padding-left: 35px;}
+.home-page-profile img{width: 34px;height: 34px;border-radius: 50%;float: left;margin-right: 5px;display: inline-block;}
+.home-page-profile{ line-height: 34px;padding-left: 5px; }
+
+.bar-facebook {
+    border-color: #3388cc;
+    background-color: #3388cc;
+    background-image: linear-gradient(0deg, #3388cc, #3388cc 50%, transparent 50%);
+    color: #fff; }
+
+.bar-twitter {
+    border-color: #55acee;
+    background-color: #55acee;
+    background-image: linear-gradient(0deg, #55acee, #55acee 50%, transparent 50%);
+    color: #fff; }
+
+.bar-googleplus {
+    border-color: #dd4b39;
+    background-color: #dd4b39;
+    background-image: linear-gradient(0deg, #dd4b39, #dd4b39 50%, transparent 50%);
+    color: #fff; }
+
+.bar-linkedin {
+    border-color: #127cb4;
+    background-color: #127cb4;
+    background-image: linear-gradient(0deg, #127cb4, #127cb4 50%, transparent 50%);
+    color: #fff; }
+
+.bar-pinterest {
+    border-color: #c9232d;
+    background-color: #c9232d;
+    background-image: linear-gradient(0deg, #c9232d, #c9232d 50%, transparent 50%);
+    color: #fff; }
+
+.bar-instagram {
+    border-color: #5380a2;
+    background-color: #5380a2;
+    background-image: linear-gradient(0deg, #5380a2, #5380a2 50%, transparent 50%);
+    color: #fff; }
+
+.bar-youtube {
+    border-color: #c9232d;
+    background-color: #c9232d;
+    background-image: linear-gradient(0deg, #c9232d, #c9232d 50%, transparent 50%);
+    color: #fff; }
+
+.bar-blogger {
+    border-color: #FB8F3D;
+    background-color: #FB8F3D;
+    background-image: linear-gradient(0deg, #FB8F3D, #FB8F3D 50%, transparent 50%);
+    color: #fff; }
+
+
+/*Manage accounts*/
+
+.manage-accounts .list .item.profile{border-width:0px;padding: 7px;}
+.manage-accounts .item.item-checkbox{border-width:0px;padding: 7px;}
+.manage-accounts .profile img{width: 34px;height: 34px;border-radius: 50%;float: left;margin-right: 5px;display: inline-block;}
+.manage-accounts { line-height: 34px;padding-left: 5px; }

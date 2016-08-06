@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="ionicApp">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+  <title>Ionic-AngularJS Kitchen Sink</title>
+
+  <link href="css/ionic.app.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
+  <script src="lib/ngCordova/dist/ng-cordova.min.js"></script> 
+  <script src="lib/ngstorage/ngStorage.min.js"></script>
+  
+  <script src="lib/underscore/underscore-min.js"></script>
+  <script src="lib/angular-underscore-module/angular-underscore-module.js"></script>
+
+  <script src="js/app/ec_lib.js"></script> 
+  <script src="dist/bundle.js"></script> 
+  <script src="cordova.js"></script>
+  
+
+  <style>
+      .box {height:300px;padding: 10px}
+  </style>      
+</head>
+
+<body>
+
+  <ion-nav-bar class="nav-title-slide-ios7 bar-positive">
+    <ion-nav-back-button class="button-icon ion-arrow-left-c">
+    </ion-nav-back-button>
+  </ion-nav-bar>
+
+  <div ng-controller="AppCtrl">
+    <ion-nav-view animation="slide-left-right"></ion-nav-view>
+  </div>  
+  
+      
+</body>
+</html>

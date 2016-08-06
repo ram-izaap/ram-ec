@@ -1,0 +1,12 @@
+<div class="item item-divider item-icon-left item-icon-right bar-{{account.type | lowercase}}">
+	<i class="icon ion-social-{{account.type | lowercase}}"></i>
+	<span class="">{{account.type}} - FD</span>
+	<div class="icon">
+		<span class=" ion-refresh" ng-click="refreshAccount(account)"> </span>
+		<span class=" ion-ios-trash" ng-click="deleteAccount(account)"> </span>
+    </div>
+</div>
+
+<div ng-repeat="profile in account.profiles">
+	<manage-profile profile="profile" ></manage-profile>
+</div>

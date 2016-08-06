@@ -1,0 +1,28 @@
+
+    
+    <ion-view view-title="Home">
+
+      
+        
+      <ion-content class="padding-top home-page">
+        
+        <a class="button icon icon-left button-assertive" ng-click="gns()">Go New State</a>
+
+        <div class="list">
+            <div ng-repeat="acc_type in acc_types">
+             
+               <div class="item item-divider item-icon-left bar-{{acc_type}}">
+                <i class="icon ion-social-{{acc_type}}"></i>
+                <span class="">{{acc_type}}</span>
+               </div>
+               <div class="item item-icon-right home-page-profile" ng-repeat="profile in groups[acc_type].profiles" ng-click="openFeeds(profile)">
+                <img src="{{profile.picture}}">
+                {{profile.getUserName()}}
+                <i class="icon ion-chatbubble-working"></i>
+                </div>
+
+            </div>
+        </div>
+          
+      </ion-content>
+    </ion-view>

@@ -1,0 +1,98 @@
+
+    
+    <ion-view view-title="Manage Accounts" hide-tabs>
+        <ion-nav-bar class="bar-positive">
+            <ion-nav-back-button></ion-nav-back-button>
+        </ion-nav-bar> 
+      <ion-content class="padding-top manage-accounts has-footer">
+        
+        <a class="button icon icon-left button-assertive" ng-click="cst()">Change State</a>
+
+
+        <div class="checkboxList">
+            <div id="teamCheckboxList">
+                <div ng-repeat="team in teams ">
+                    <label>
+                        <input type="checkbox" ng-model="team.isChecked"  ng-change="disp()" /> <span>{{team.name }} </span>
+
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-side-menu row ">
+          <div class="col-20 bar-facebook">
+            <button class="button button-icon" ng-click="add_account('facebook')">
+              <i class="icon ion-social-facebook"></i> facebook
+            </button>
+          </div>
+          <div class="col-20 bar-twitter">
+            <button class="button button-icon" ng-click="add_account('twitter')">
+              <i class="icon ion-social-twitter"></i> twitter
+            </button>
+          </div>
+          <div class="col-20 bar-googleplus">
+            <button class="button button-icon" ng-click="add_account('facebook')">
+              <i class="icon ion-social-facebook"></i> facebook
+            </button>
+          </div>
+          <div class="col-20 bar-linkedin">
+            <button class="button button-icon" ng-click="add_account('twitter')">
+              <i class="icon ion-social-twitter"></i> twitter
+            </button>
+          </div>
+          <div class="col-20 bar-youtube">
+            <button class="button button-icon">
+              <i class="icon ion-social-facebook"></i> facebook
+            </button>
+          </div>
+        </div>
+        <div class="container-side-menu row ">
+          <div class="col-20 bar-youtube">
+            <button class="button button-icon">
+              <i class="icon ion-social-twitter"></i> twitter
+            </button>
+          </div>
+          <div class="col-20 bar-youtube">
+            <button class="button button-icon">
+              <i class="icon ion-social-facebook"></i> facebook
+            </button>
+          </div>
+          <div class="col-20 bar-youtube">
+            <button class="button button-icon">
+              <i class="icon ion-social-twitter"></i> twitter
+            </button>
+          </div>
+          <div class="col-20 bar-youtube">
+            <button class="button button-icon">
+              <i class="icon ion-social-facebook"></i> facebook
+            </button>
+          </div>
+          <div class="col-20 bar-youtube">
+            <button class="button button-icon">
+              <i class="icon ion-social-twitter"></i> twitter
+            </button>
+          </div>
+        </div>
+
+
+        <div class="list">
+            <div ng-repeat="account in accounts">
+             
+              <manage-account account="account"></manage-account>
+
+            </div>
+        </div>        
+
+      </ion-content>
+
+      <ion-footer-bar align-title="left" class="bar-assertive">
+          <div class="buttons">
+            <button class="button">Left Button</button>
+          </div>
+          <h1 class="title">Title!</h1>
+          <div class="buttons" ng-click="doSomething()">
+            <button class="button">Right Button</button>
+          </div>
+        </ion-footer-bar>
+    </ion-view>
