@@ -1,5 +1,50 @@
 module.exports = angular.module('ionicApp.directives', [])
 
+.directive('positionBarsAndContent', function($timeout) {
+
+ return {
+    
+    restrict: 'AC',
+
+    link: function(scope, element, attrs) {
+      
+      var offsetTop = 0;
+      
+      
+      
+
+      // Get the parent node of the ion-content
+      var parent = angular.element(element[0].parentNode);
+
+      var m_header =  parent[0].getElementsByClassName('bar-header');
+
+      // Get all the headers in this parent
+      var s_headers = parent[0].getElementsByClassName('bar-subheader');
+
+      if( m_header.length )
+      {
+        offsetTop = m_header[0].offsetHeight;
+      }
+      
+      // Iterate through all the headers
+      for(x=0;x<s_headers.length;x++)
+      {
+        // If this is not the main header or nav-bar, adjust its position to be below the previous header
+        if(x >= 0) {
+          s_headers[x].style.top = offsetTop + 'px';
+        }
+        
+        // Add up the heights of all the header bars
+        offsetTop = offsetTop + s_headers[x].offsetHeight;
+      }      
+      
+      // Position the ion-content element directly below all the headers
+      element[0].style.top = offsetTop + 'px';
+      
+    }
+  };  
+})
+
 .directive('hideTabs', function($rootScope) {
   return {
       restrict: 'A',

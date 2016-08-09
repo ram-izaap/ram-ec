@@ -2,15 +2,22 @@
     
     
 
-    <ion-view view-title="Feeds" cache-view="true" >
+    <ion-view view-title="Feeds" cache-view="true" class="feeds">
 
         <ion-nav-title>
-        Ramakrishnan K
+        {{ ::feed.profile.username }}
         </ion-nav-title>
 
-        <div class="bar bar-subheader" ng-click="getScrollPosition()">
-          <h2 class="title">Sub Header dd</h2>
-        </div>
+        <ion-header-bar class='bar bar-subheader item-icon-left item-icon-right' ng-click="getScrollPosition()">
+          <i class="icon ion-ios-arrow-left" ui-sref="{{::prev_page_id}}"></i>
+          <h2 class="title">{{ feed.page_title }}</h2>
+          <i class="icon ion-ios-arrow-right" ui-sref="{{::next_page_id}}"></i>
+        </ion-header-bar>
+        
+        <ion-header-bar class='bar bar-subheader' ng-show="feed.dropdown_feed" >
+          <select name="repeatSelect" ng-options="option.name for option in feed.dd.data track by option.id" ng-model="selected_dd" ng-change="processDD()">
+          </select>
+        </ion-header-bar>
 
         <ion-nav-bar class="bar-positive">
             <ion-nav-back-button></ion-nav-back-button>
@@ -21,17 +28,17 @@
         </ion-nav-bar> 
 
 
-      <ion-content class="has-subheader padding-top feeds" delegate-handle="mainScroll">
-        
+        <ion-content class=" padding-top feeds" delegate-handle="mainScroll" position-bars-and-content>
+          
 
-        <ion-list can-swipe="true">
-          <feed-item ng-repeat="item in feed.items" item="item"></feed-item>
-        </ion-list>    
+          <ion-list can-swipe="true">
+            <feed-item ng-repeat="item in feed.items" item="item"></feed-item>
+          </ion-list>    
 
-        <ion-infinite-scroll ng-if="!moredata" on-infinite="loadMore()" distance="20%">
-        </ion-infinite-scroll>
+          <ion-infinite-scroll ng-if="!moredata" on-infinite="loadMore()" distance="20%">
+          </ion-infinite-scroll>
 
-      </ion-content>
+        </ion-content>
 
       
     </ion-view>

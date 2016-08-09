@@ -30,7 +30,10 @@ module.exports = angular.module('ionicApp.controllers', [])
     if( $rootScope.social !== undefined )
         console.log($rootScope.social.feeds_in_order);
 
-    $scope.$parent.updateSideMenu(EC.getSideMenu('home'));
+    $scope.$on("$ionicView.enter", function() {
+        $scope.$parent.updateSideMenu(EC.getSideMenu('home'));
+    });
+    
 
     $scope.groups = [];
     $scope.acc_types = [];
@@ -183,20 +186,75 @@ module.exports = angular.module('ionicApp.controllers', [])
    
     
     
-    $scope.getScrollPosition = function() {
-        console.log( $ionicScrollDelegate.$getByHandle('mainScroll').getScrollPosition()  );
-    };
-
     $scope.moreDataCanBeLoaded = false;
     $scope.counter = 0;
 
     var index = _.findLastIndex($rootScope.social.feeds_in_order, {  page_id: $state.current.name});
     $scope.feed = $rootScope.social.feeds_in_order[index];
     
+    
+    var next_page_index = 0,
+        prev_page_index = 0,
+        no_of_pages = $rootScope.social.feeds_in_order.length;
+
+    if( index === 0 )
+    {
+        next_page_index = index + 1;
+        prev_page_index = no_of_pages - 1;
+    }
+    else if( index == (no_of_pages - 1) )
+    {
+        next_page_index = 0;
+        prev_page_index = no_of_pages - 2;
+    }
+    else
+    {
+        next_page_index = index + 1;
+        prev_page_index = index - 1;
+    }
+
+    $scope.next_page_id = $rootScope.social.feeds_in_order[next_page_index].page_id;
+    $scope.prev_page_id = $rootScope.social.feeds_in_order[prev_page_index].page_id;
+
     console.log(index);
     console.log($scope.feed);
     
+    $scope.test_name = [];
+    $scope.test_name.push({'name':'Ram'});
+    $scope.getScrollPosition = function() {
+        //console.log( $ionicScrollDelegate.$getByHandle('mainScroll').getScrollPosition()  );
+        /*$rootScope.$apply(function () {
+            $rootScope.social.feeds_in_order[index].items[0].profile.username = 'JJJJJJJJJJJJJJJ';
+            //$scope.feed.items[0].profile.username = 'JJJJJJJJJJJJJJJ';
+            console.log($scope.feed);
+        });*/
+        //$scope.test_name[0].name = 'KKKKKKKKK';
+        //$scope.feed.items[0].data.fromName = 'JJJJJJJJJJJJJJJ';
+
+        //$rootScope.$digest();
+        
+
+        //console.log('watchersWithoutDuplicates.length:::'+watchersWithoutDuplicates.length);
     
+        
+    };
+    
+    $scope.feed.dd = { 'count':0, 'data':[], 'placeholder': ''};
+    $scope.selected_dd = {};
+
+    $scope.$watch('feed.dropdown_feed', function() {
+
+        if( $scope.feed.dropdown_feed )
+        {
+            console.log('MMMMMMMMMMMMMMMMM');
+            console.log($scope.feed.dropdown_obj);
+            $scope.feed.dd = $scope.feed.dropdown_obj.get_dropdown();
+            $scope.$broadcast('scroll.infiniteScrollComplete');
+            $scope.moredata = true;
+        }
+
+    });
+
     $scope.$watchCollection('feed.items', function() {
         
         if( $scope.feed.items.length )
@@ -236,10 +294,18 @@ module.exports = angular.module('ionicApp.controllers', [])
         
     };
     
+    $scope.processDD = function()
+    {
+        console.log($scope.selected_dd);
+        $scope.feed.dropdown_obj.set_default_group_id( $scope.selected_dd );
+        $scope.feed.dropdown_obj.get_data( $scope.selected_dd );
+            
+    };
 
     $scope.$on("$ionicView.enter", function() {
         var delegate = $ionicScrollDelegate.$getByHandle('mainScroll');
-        delegate.scrollTo( 0, $scope.feed.last_scroll_position );
+        //delegate.scrollTo( 0, $scope.feed.last_scroll_position );
+        $scope.$parent.$parent.updateSideMenu(EC.getSideMenu('feed'));
     });
 
     $scope.$on("$ionicView.beforeLeave", function() {
@@ -247,7 +313,7 @@ module.exports = angular.module('ionicApp.controllers', [])
         $scope.feed.last_scroll_position = position.top;
     });
 
-    $scope.$parent.$parent.updateSideMenu(EC.getSideMenu('feed'));
+    
 
     
 
