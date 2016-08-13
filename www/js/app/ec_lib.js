@@ -18,7 +18,7 @@ var EClib = function ( $q, $http, apiUrl, $localStorage, $ionicLoading )
             if( request.method === undefined )
               request.method = request.type;
 
-            $ionicLoading.show();
+            //$ionicLoading.show();
 
             if( request.method == 'GET' )
             {
@@ -28,7 +28,7 @@ var EClib = function ( $q, $http, apiUrl, $localStorage, $ionicLoading )
             $http( request )
                 .then(function(response) 
                     {
-                      $ionicLoading.hide();
+                      //$ionicLoading.hide();
                       
                       var user_data = response.data;
                       console.log( response );
@@ -42,7 +42,7 @@ var EClib = function ( $q, $http, apiUrl, $localStorage, $ionicLoading )
                     },
                     function() 
                     {
-                      $ionicLoading.hide();
+                      //$ionicLoading.hide();
                       reject( 'There is some connectivity issue .Please try again later.' );
                     }
                 );

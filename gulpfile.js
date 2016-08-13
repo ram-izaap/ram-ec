@@ -20,7 +20,7 @@ var paths = {
   bundleSrc: ['./www/js/dist/bundle.js']
 };
 
-gulp.task('default', ['lint', 'browserify']);
+gulp.task('default', ['sass', 'lint', 'browserify']);
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')

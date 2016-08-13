@@ -89,6 +89,18 @@ module.exports = angular.module('ionicApp.services', [])
 
 .factory('accountManager', require('./app/account-manager')) 
 
+.factory('Feed', require('./app/social/feed')) 
+
+.factory('FeedItem', require('./app/social/FeedItem')) 
+
+.factory('TimelineFeedItem', require('./app/social/timelineFeedItem')) 
+
+.factory('DropdownFeedItem', require('./app/social/dropdownFeedItem'))
+
+.factory('CollapsibleFeedItem', require('./app/social/collapsibleFeedItem'))
+
+.factory('FacebookFeed', require('./app/social/facebook'))
+
 .factory('socialManager', require('./app/social-manager')) 
 
 .factory('AuthInterceptor', function($rootScope, $q, AUTH_EVENTS) {

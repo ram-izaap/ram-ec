@@ -14,9 +14,10 @@
           <i class="icon ion-ios-arrow-right" ui-sref="{{::next_page_id}}"></i>
         </ion-header-bar>
         
-        <ion-header-bar class='bar bar-subheader' ng-show="feed.dropdown_feed" >
-          <select name="repeatSelect" ng-options="option.name for option in feed.dd.data track by option.id" ng-model="selected_dd" ng-change="processDD()">
+        <ion-header-bar class='bar bar-subheader feeds-dd' ng-show="feed.dropdown_feed" >
+          <select name="feeds-dd" ng-options="option.name for option in feed.dd.data track by option.id" ng-model="selected_dd" ng-change="processDD()" ng-show="feed.dd.data.length">
           </select>
+          <h2 class="title" ng-show="!feed.dd.data.length">{{ feed.dd.placeholder }}</h2>
         </ion-header-bar>
 
         <ion-nav-bar class="bar-positive">
@@ -27,15 +28,16 @@
             </ion-nav-buttons>
         </ion-nav-bar> 
 
-
-        <ion-content class=" padding-top feeds" delegate-handle="mainScroll" position-bars-and-content>
+        <position-bars-and-content dd-feed="feed.dropdown_feed"></position-bars-and-content>
+        
+        <ion-content class=" padding-top feeds" delegate-handle="mainScroll" >
           
 
           <ion-list can-swipe="true">
-            <feed-item ng-repeat="item in feed.items" item="item"></feed-item>
+            <feed-item ng-repeat="item in feed.items track by $index" item="item"></feed-item>
           </ion-list>    
 
-          <ion-infinite-scroll ng-if="!moredata" on-infinite="loadMore()" distance="20%">
+          <ion-infinite-scroll ng-if="!moredata" on-infinite="loadMore()" distance="10%" immediate-check="false" >
           </ion-infinite-scroll>
 
         </ion-content>

@@ -4,43 +4,60 @@ module.exports = angular.module('ionicApp.directives', [])
 
  return {
     
-    restrict: 'AC',
+    restrict: 'E',
+    scope: {
+        ddFeed: '=ddFeed'
+    },
 
     link: function(scope, element, attrs) {
       
-      var offsetTop = 0;
-      
-      
-      
 
-      // Get the parent node of the ion-content
-      var parent = angular.element(element[0].parentNode);
+      console.log('KAKAKAKAKKAKAKAK:::::::::::::::::::::');
+      console.log(scope.ddFeed);
+      doProcess();
 
-      var m_header =  parent[0].getElementsByClassName('bar-header');
+      scope.$watch('ddFeed', function(nv){
+        console.log('KAKAKAKAKKAKAKAK:::::::::::::::::::::');
+        console.log(nv);
+        doProcess();
+      });
 
-      // Get all the headers in this parent
-      var s_headers = parent[0].getElementsByClassName('bar-subheader');
-
-      if( m_header.length )
+      function doProcess()
       {
-        offsetTop = m_header[0].offsetHeight;
+          var offsetTop = 0;
+          var platform = 'ios';//$cordovaDevice.getPlatform();
+          platform = platform.toLowerCase();    
+
+
+          // Get the parent node of the ion-content
+          var parent = angular.element(element[0].parentNode);
+
+          var m_header =  parent[0].getElementsByClassName('bar-header');
+
+          // Get all the headers in this parent
+          var s_headers = parent[0].getElementsByClassName('bar-subheader');
+          var i_content = parent[0].getElementsByTagName('ion-content');
+
+          if( m_header.length )
+          {
+            offsetTop = m_header[0].offsetHeight + (platform == 'ios'?20:0);
+          }
+          
+          // Iterate through all the headers
+          for(x=0;x<s_headers.length;x++)
+          {
+            // If this is not the main header or nav-bar, adjust its position to be below the previous header
+            if(x >= 0) {
+              s_headers[x].style.top = offsetTop + 'px';
+            }
+            
+            // Add up the heights of all the header bars
+            offsetTop = offsetTop + s_headers[x].offsetHeight;
+          }      
+          
+          // Position the ion-content element directly below all the headers
+          i_content[0].style.top = offsetTop + 'px';
       }
-      
-      // Iterate through all the headers
-      for(x=0;x<s_headers.length;x++)
-      {
-        // If this is not the main header or nav-bar, adjust its position to be below the previous header
-        if(x >= 0) {
-          s_headers[x].style.top = offsetTop + 'px';
-        }
-        
-        // Add up the heights of all the header bars
-        offsetTop = offsetTop + s_headers[x].offsetHeight;
-      }      
-      
-      // Position the ion-content element directly below all the headers
-      element[0].style.top = offsetTop + 'px';
-      
     }
   };  
 })

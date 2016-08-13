@@ -221,20 +221,7 @@ module.exports = angular.module('ionicApp.controllers', [])
     
     $scope.test_name = [];
     $scope.test_name.push({'name':'Ram'});
-    $scope.getScrollPosition = function() {
-        //console.log( $ionicScrollDelegate.$getByHandle('mainScroll').getScrollPosition()  );
-        /*$rootScope.$apply(function () {
-            $rootScope.social.feeds_in_order[index].items[0].profile.username = 'JJJJJJJJJJJJJJJ';
-            //$scope.feed.items[0].profile.username = 'JJJJJJJJJJJJJJJ';
-            console.log($scope.feed);
-        });*/
-        //$scope.test_name[0].name = 'KKKKKKKKK';
-        //$scope.feed.items[0].data.fromName = 'JJJJJJJJJJJJJJJ';
-
-        //$rootScope.$digest();
-        
-
-        //console.log('watchersWithoutDuplicates.length:::'+watchersWithoutDuplicates.length);
+    $scope.getScrollPosition = function() {       
     
         
     };
@@ -249,8 +236,18 @@ module.exports = angular.module('ionicApp.controllers', [])
             console.log('MMMMMMMMMMMMMMMMM');
             console.log($scope.feed.dropdown_obj);
             $scope.feed.dd = $scope.feed.dropdown_obj.get_dropdown();
-            $scope.$broadcast('scroll.infiniteScrollComplete');
-            $scope.moredata = true;
+
+            if( !$scope.feed.dd.data.length )
+            {
+                $scope.$broadcast('scroll.infiniteScrollComplete');
+                $scope.moredata = true;
+            }
+            else
+            {
+                $scope.selected_dd = $scope.feed.dd.data[0];
+                $scope.loadMore();
+            }           
+            
         }
 
     });
@@ -280,25 +277,50 @@ module.exports = angular.module('ionicApp.controllers', [])
     $scope.loadMore = function()
     {
 
-        if ( ! $scope.feed.items.length && ! $scope.counter )
+        if( $scope.feed.dropdown_feed )
         {
-            $scope.feed.last_loaded_time = (new Date()).getTime();
-            $scope.feed.get_data();
+            if ( ! $scope.feed.items.length && $scope.counter == 1 )
+            {
+                $scope.feed.last_loaded_time = (new Date()).getTime();
+                
+                $scope.feed.dropdown_obj.set_default_group_id( $scope.selected_dd );
+                $scope.feed.dropdown_obj.get_data( $scope.selected_dd );
+            }
+            else
+            {
+                console.log('load more.....................');
+            } 
         }
         else
         {
-            $scope.feed.more();
+            if ( ! $scope.feed.items.length && ! $scope.counter )
+            {
+                $scope.feed.last_loaded_time = (new Date()).getTime();
+                $scope.feed.get_data();
+            }
+            else
+            {
+                $scope.feed.more();
+            } 
         }
+        
 
         $scope.counter++;        
         
     };
     
+    $scope.loadMore();
+    
     $scope.processDD = function()
     {
         console.log($scope.selected_dd);
-        $scope.feed.dropdown_obj.set_default_group_id( $scope.selected_dd );
-        $scope.feed.dropdown_obj.get_data( $scope.selected_dd );
+        $scope.feed.items = [];
+
+        $scope.counter = 1;
+        $scope.loadMore();
+
+        //$scope.feed.dropdown_obj.set_default_group_id( $scope.selected_dd );
+        //$scope.feed.dropdown_obj.get_data( $scope.selected_dd );
             
     };
 
