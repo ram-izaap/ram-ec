@@ -7,14 +7,32 @@ module.exports = [
                     '$urlRouter', 
                     'EC', 
                     'apiUrl', 
-                    'FacebookFeed', 
+                    'FacebookFeed',
+                    'LinkedinFeed',
+                    'TwitterFeed', 
                     'BloggerFeed', 
                     'GooglePlusFeed',
                     'YouTubeFeed',
                     'PinterestFeed',
                     'InstagramFeed',
                     '$injector', 
-                    function($http, $state, $rootScope, $urlRouter, EC, apiUrl, FacebookFeed, BloggerFeed, GooglePlusFeed, YouTubeFeed, PinterestFeed, InstagramFeed, $injector ){
+                    function(
+                        $http, 
+                        $state, 
+                        $rootScope, 
+                        $urlRouter, 
+                        EC, 
+                        apiUrl, 
+                        FacebookFeed, 
+                        LinkedinFeed,
+                        TwitterFeed, 
+                        BloggerFeed, 
+                        GooglePlusFeed, 
+                        YouTubeFeed, 
+                        PinterestFeed, 
+                        InstagramFeed, 
+                        $injector )
+{
 
     function Social( profile )
     {
@@ -98,6 +116,14 @@ module.exports = [
                     case 'facebook': 
                         console.log('FB test:::');
                         new_feed = new FacebookFeed( this_stream, this.profile );
+                    break;
+
+                    case 'linkedin':
+                        new_feed = new LinkedinFeed( this_stream, this.profile );
+                    break;
+
+                    case 'twitter': 
+                        new_feed = new TwitterFeed( this_stream, this.profile );
                     break;
 
                     case 'blogger': 

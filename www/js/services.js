@@ -95,15 +95,25 @@ module.exports = angular.module('ionicApp.services', [])
 
 .factory('TimelineFeedItem', require('./app/social/timelineFeedItem')) 
 
+.factory('LinkedinFeedItem', require('./app/social/linkedinFeedItem')) 
+
 .factory('DropdownFeedItem', require('./app/social/dropdownFeedItem'))
+
+.factory('LinkedinFeedItem', require('./app/social/linkedinFeedItem')) 
 
 .factory('InstagramFeedItem', require('./app/social/InstagramFeedItem'))
 
 .factory('CollapsibleFeedItem', require('./app/social/collapsibleFeedItem'))
 
-.factory('TimelineFeedItem', require('./app/social/timelineFeedItem')) 
+.factory('LinkedinCollapsibleFeedItem', require('./app/social/linkedinCollapsibleFeedItem')) 
+
+.factory('TwitterCollapsibleFeedItem', require('./app/social/TwitterCollapsibleFeedItem')) 
 
 .factory('FacebookFeed', require('./app/social/facebook'))
+
+.factory('LinkedinFeed', require('./app/social/linkedinFeed'))
+
+.factory('TwitterFeed', require('./app/social/twitterFeed'))
 
 .factory('BloggerFeed', require('./app/social/bloggerFeed'))
 
