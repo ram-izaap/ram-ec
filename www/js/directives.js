@@ -131,7 +131,7 @@ module.exports = angular.module('eclincher.directives', [])
             
           };
 
-          scope.fname = 'Rama!!!!!....';
+          scope.data = scope.item.getUIData();
           
           scope.refreshAccount = function( obj ){
             console.log(obj);

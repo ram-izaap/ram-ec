@@ -64,7 +64,7 @@ gulp.task('git-check', function(done) {
 // JSHint task
 gulp.task('lint', function() {
   gulp.src(['./www/js/**/*.js'])
-  .pipe(jshint())
+  //.pipe(jshint())
   // You can look into pretty reporters as well, but that's another story
   .pipe(jshint.reporter('default'))
   .pipe(jshint.reporter('fail'));
