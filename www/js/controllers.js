@@ -192,10 +192,10 @@ module.exports = angular.module('ionicApp.controllers', [])
     var index = _.findLastIndex($rootScope.social.feeds_in_order, {  page_id: $state.current.name});
     $scope.feed = $rootScope.social.feeds_in_order[index];
     
-    
+    console.log($scope.feed);
     var next_page_index = 0,
         prev_page_index = 0,
-        no_of_pages = $rootScope.social.feeds_in_order.length;
+        no_of_pages = $scope.feed.profile.social.updated_streams_order.length;//$rootScope.social.feeds_in_order.length;
 
     if( index === 0 )
     {
@@ -213,8 +213,8 @@ module.exports = angular.module('ionicApp.controllers', [])
         prev_page_index = index - 1;
     }
 
-    $scope.next_page_id = $rootScope.social.feeds_in_order[next_page_index].page_id;
-    $scope.prev_page_id = $rootScope.social.feeds_in_order[prev_page_index].page_id;
+    $scope.next_page_id = $scope.feed.profile.social.updated_streams_order[next_page_index];//$rootScope.social.feeds_in_order[next_page_index].page_id;
+    $scope.prev_page_id = $scope.feed.profile.social.updated_streams_order[prev_page_index];//$rootScope.social.feeds_in_order[prev_page_index].page_id;
 
     console.log(index);
     console.log($scope.feed);

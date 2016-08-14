@@ -101,6 +101,8 @@ module.exports = angular.module('ionicApp.services', [])
 
 .factory('FacebookFeed', require('./app/social/facebook'))
 
+.factory('BloggerFeed', require('./app/social/bloggerFeed'))
+
 .factory('socialManager', require('./app/social-manager')) 
 
 .factory('AuthInterceptor', function($rootScope, $q, AUTH_EVENTS) {

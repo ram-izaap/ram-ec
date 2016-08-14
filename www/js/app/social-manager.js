@@ -1,6 +1,9 @@
 
 
-module.exports = ['$http', '$state', '$rootScope', '$urlRouter', 'EC', 'apiUrl', 'FacebookFeed', '$injector', function($http, $state, $rootScope, $urlRouter, EC, apiUrl, FacebookFeed, $injector ){
+module.exports = [
+                    '$http', 
+                    '$state', 
+                    '$rootScope', '$urlRouter', 'EC', 'apiUrl', 'FacebookFeed', 'BloggerFeed', '$injector', function($http, $state, $rootScope, $urlRouter, EC, apiUrl, FacebookFeed, BloggerFeed, $injector ){
 
     function Social( profile )
     {
@@ -84,6 +87,10 @@ module.exports = ['$http', '$state', '$rootScope', '$urlRouter', 'EC', 'apiUrl',
                     case 'facebook': 
                         console.log('FB test:::');
                         new_feed = new FacebookFeed( this_stream, this.profile );
+                    break;
+
+                    case 'blogger': 
+                        new_feed = new BloggerFeed( this_stream, this.profile );
                     break;
                     
                 }
