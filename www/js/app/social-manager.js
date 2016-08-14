@@ -11,8 +11,10 @@ module.exports = [
                     'BloggerFeed', 
                     'GooglePlusFeed',
                     'YouTubeFeed',
+                    'PinterestFeed',
+                    'InstagramFeed',
                     '$injector', 
-                    function($http, $state, $rootScope, $urlRouter, EC, apiUrl, FacebookFeed, BloggerFeed, GooglePlusFeed, YouTubeFeed, $injector ){
+                    function($http, $state, $rootScope, $urlRouter, EC, apiUrl, FacebookFeed, BloggerFeed, GooglePlusFeed, YouTubeFeed, PinterestFeed, InstagramFeed, $injector ){
 
     function Social( profile )
     {
@@ -108,6 +110,14 @@ module.exports = [
 
                     case 'youtube': 
                         new_feed = new YouTubeFeed( this_stream, this.profile );
+                    break;
+
+                    case 'pinterest': 
+                        new_feed = new PinterestFeed( this_stream, this.profile );
+                    break;
+
+                    case 'instagram': 
+                        new_feed = new InstagramFeed( this_stream, this.profile );
                     break;
                     
                 }

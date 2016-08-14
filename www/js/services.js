@@ -97,7 +97,11 @@ module.exports = angular.module('ionicApp.services', [])
 
 .factory('DropdownFeedItem', require('./app/social/dropdownFeedItem'))
 
+.factory('InstagramFeedItem', require('./app/social/InstagramFeedItem'))
+
 .factory('CollapsibleFeedItem', require('./app/social/collapsibleFeedItem'))
+
+.factory('TimelineFeedItem', require('./app/social/timelineFeedItem')) 
 
 .factory('FacebookFeed', require('./app/social/facebook'))
 
@@ -105,7 +109,11 @@ module.exports = angular.module('ionicApp.services', [])
 
 .factory('GooglePlusFeed', require('./app/social/googleplusFeed'))
 
+.factory('PinterestFeed', require('./app/social/pinterestFeed'))
+
 .factory('YouTubeFeed', require('./app/social/youTubeFeed'))
+
+.factory('InstagramFeed', require('./app/social/instagramFeed'))
 
 .factory('socialManager', require('./app/social-manager')) 
 

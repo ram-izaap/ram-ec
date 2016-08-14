@@ -6,8 +6,8 @@ module.exports = ['$http', '$state', '$rootScope', '$localStorage', 'EC', 'apiUr
 
     var self = this;
 
-    var FeedItem =  $injector.get('FeedItem');
-    var TimelineFeedItem =  $injector.get('TimelineFeedItem');
+    var FeedItem =  FeedItem || $injector.get('FeedItem');
+    var TimelineFeedItem =  TimelineFeedItem || $injector.get('TimelineFeedItem');
     
 
     function DropdownFeedItem ( item_data, feed )
