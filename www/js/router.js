@@ -134,7 +134,7 @@ module.exports = ['$stateProvider', '$urlRouterProvider','$ionicConfigProvider',
 		    $ionicConfigProvider.navBar.alignTitle("center");
 		    $ionicConfigProvider.tabs.style("standard");
 
-		    $ionicConfigProvider.views.maxCache(20);
+		    $ionicConfigProvider.views.maxCache(0);
 		    $ionicConfigProvider.views.transition('none');
 		    $ionicConfigProvider.views.forwardCache(true);
 		    

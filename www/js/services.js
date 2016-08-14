@@ -105,6 +105,8 @@ module.exports = angular.module('ionicApp.services', [])
 
 .factory('GooglePlusFeed', require('./app/social/googleplusFeed'))
 
+.factory('YouTubeFeed', require('./app/social/youTubeFeed'))
+
 .factory('socialManager', require('./app/social-manager')) 
 
 .factory('AuthInterceptor', function($rootScope, $q, AUTH_EVENTS) {

@@ -10,8 +10,9 @@ module.exports = [
                     'FacebookFeed', 
                     'BloggerFeed', 
                     'GooglePlusFeed',
+                    'YouTubeFeed',
                     '$injector', 
-                    function($http, $state, $rootScope, $urlRouter, EC, apiUrl, FacebookFeed, BloggerFeed, GooglePlusFeed, $injector ){
+                    function($http, $state, $rootScope, $urlRouter, EC, apiUrl, FacebookFeed, BloggerFeed, GooglePlusFeed, YouTubeFeed, $injector ){
 
     function Social( profile )
     {
@@ -103,6 +104,10 @@ module.exports = [
 
                     case 'googleplus': 
                         new_feed = new GooglePlusFeed( this_stream, this.profile );
+                    break;
+
+                    case 'youtube': 
+                        new_feed = new YouTubeFeed( this_stream, this.profile );
                     break;
                     
                 }
