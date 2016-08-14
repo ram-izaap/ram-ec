@@ -1,6 +1,6 @@
-module.exports = angular.module('ionicApp.services', [])
+module.exports = angular.module('eclincher.services', [])
 
-.factory('EC', EClib)
+.factory('EC', require('./app/ec-utility'))
 
 //service for authentication
 .service('AuthService', function($q, $http, apiUrl, EC) {
@@ -82,50 +82,8 @@ module.exports = angular.module('ionicApp.services', [])
 })
 
 .factory('UserSettings', require('./app/settings-manager')) 
-
-.factory('Account', require('./app/account')) 
-
-.factory('Profile', require('./app/profile')) 
-
-.factory('accountManager', require('./app/account-manager')) 
-
-.factory('Feed', require('./app/social/feed')) 
-
-.factory('FeedItem', require('./app/social/FeedItem')) 
-
-.factory('TimelineFeedItem', require('./app/social/timelineFeedItem')) 
-
-.factory('LinkedinFeedItem', require('./app/social/linkedinFeedItem')) 
-
-.factory('DropdownFeedItem', require('./app/social/dropdownFeedItem'))
-
-.factory('LinkedinFeedItem', require('./app/social/linkedinFeedItem')) 
-
-.factory('InstagramFeedItem', require('./app/social/InstagramFeedItem'))
-
-.factory('CollapsibleFeedItem', require('./app/social/collapsibleFeedItem'))
-
-.factory('LinkedinCollapsibleFeedItem', require('./app/social/linkedinCollapsibleFeedItem')) 
-
-.factory('TwitterCollapsibleFeedItem', require('./app/social/TwitterCollapsibleFeedItem')) 
-
-.factory('FacebookFeed', require('./app/social/facebook'))
-
-.factory('LinkedinFeed', require('./app/social/linkedinFeed'))
-
-.factory('TwitterFeed', require('./app/social/twitterFeed'))
-
-.factory('BloggerFeed', require('./app/social/bloggerFeed'))
-
-.factory('GooglePlusFeed', require('./app/social/googleplusFeed'))
-
-.factory('PinterestFeed', require('./app/social/pinterestFeed'))
-
-.factory('YouTubeFeed', require('./app/social/youTubeFeed'))
-
-.factory('InstagramFeed', require('./app/social/instagramFeed'))
-
-.factory('socialManager', require('./app/social-manager')) 
+ 
+ 
 
 .factory('AuthInterceptor', function($rootScope, $q, AUTH_EVENTS) {
     return {

@@ -1,4 +1,4 @@
-module.exports = angular.module('ionicApp.controllers', [])
+module.exports = angular.module('eclincher.controllers', [])
 
 .controller('LoginCtrl', function($scope, $state, $ionicLoading, AuthService) {
 

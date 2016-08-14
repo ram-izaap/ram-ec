@@ -1,12 +1,10 @@
 
 
 module.exports = [
-                    '$http', 
                     '$state', 
                     '$rootScope', 
                     '$urlRouter', 
                     'EC', 
-                    'apiUrl', 
                     'FacebookFeed',
                     'LinkedinFeed',
                     'TwitterFeed', 
@@ -17,12 +15,10 @@ module.exports = [
                     'InstagramFeed',
                     '$injector', 
                     function(
-                        $http, 
                         $state, 
                         $rootScope, 
                         $urlRouter, 
                         EC, 
-                        apiUrl, 
                         FacebookFeed, 
                         LinkedinFeed,
                         TwitterFeed, 
@@ -53,7 +49,7 @@ module.exports = [
         
         this.last_active_feed_selector = 0; 
         this.feed_selector_initial_trigger = true; 
-    }
+    } 
 
     Social.prototype.pages = function(){
 

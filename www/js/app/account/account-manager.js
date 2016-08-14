@@ -2,7 +2,7 @@
     accountManager module
 */
 
-module.exports = ['$http', '$rootScope', '$localStorage', 'EC', 'apiUrl', 'Account', 'UserSettings', '$cordovaInAppBrowser', function($http, $rootScope, $localStorage, EC, apiUrl, Account, UserSettings, $cordovaInAppBrowser ){  
+module.exports = ['$rootScope', '$localStorage', 'EC', 'apiUrl', 'Account', 'UserSettings', '$cordovaInAppBrowser', function($rootScope, $localStorage, EC, apiUrl, Account, UserSettings, $cordovaInAppBrowser ){  
 
     var initialized = false,
         data = {},
@@ -36,7 +36,7 @@ module.exports = ['$http', '$rootScope', '$localStorage', 'EC', 'apiUrl', 'Accou
         //get accounts and store it
         var request = {
             method: 'GET',
-            url: apiUrl + 'account/accounts',
+            url:  'account/accounts',
             data:{'name':'ram'}
             };
 
@@ -246,7 +246,7 @@ module.exports = ['$http', '$rootScope', '$localStorage', 'EC', 'apiUrl', 'Accou
           toolbarposition: 'top'
         };
 
-        $cordovaInAppBrowser.open( encodeURI(apiUrl+path), '_blank', options);
+        $cordovaInAppBrowser.open( encodeURI(EC.getApiUrl()+path), '_blank', options);
 
         $rootScope.$on('$cordovaInAppBrowser:exit', function(e, event){
             accountManager.set_rendered( false );

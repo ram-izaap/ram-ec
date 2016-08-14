@@ -1,4 +1,4 @@
-module.exports = ['$http','EC', 'apiUrl', 'socialManager', function($http, EC, apiUrl, socialManager){
+module.exports = ['EC', 'socialManager', function(EC, socialManager){
 
 	function Profile ( profile_data, account )
     {

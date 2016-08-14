@@ -1,6 +1,6 @@
 
 
-module.exports = ['$http','EC', 'apiUrl', 'Profile', function($http, EC, apiUrl, Profile){
+module.exports = ['EC', 'Profile', function(EC, Profile){
 
     function Account ( account_data )
     {
@@ -16,7 +16,7 @@ module.exports = ['$http','EC', 'apiUrl', 'Profile', function($http, EC, apiUrl,
 
         else if ( this.type == 'GooglePlus') this.can_post = true;
 
-        else if ( this.type == 'Pinterest' && account_data.email !== undefined && account_data.password !== undefined && ! $.isEmptyObject( account_data.password ) ) this.can_post = true;
+        else if ( this.type == 'Pinterest' && account_data.email !== undefined && account_data.password !== undefined && ! _.isEmpty( account_data.password ) ) this.can_post = true;
 
         this.character_limit = false;
 

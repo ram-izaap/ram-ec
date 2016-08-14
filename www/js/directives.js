@@ -1,4 +1,4 @@
-module.exports = angular.module('ionicApp.directives', [])
+module.exports = angular.module('eclincher.directives', [])
 
 .directive('positionBarsAndContent', function($timeout) {
 
@@ -131,6 +131,8 @@ module.exports = angular.module('ionicApp.directives', [])
             
           };
 
+          scope.fname = 'Rama!!!!!....';
+          
           scope.refreshAccount = function( obj ){
             console.log(obj);
           };
