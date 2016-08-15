@@ -9,37 +9,42 @@ module.exports = ['$compile', function( $compile ){
       scope: {
         item: '=item'
       },
-      //templateUrl: 'templates/directives/feed-item.html',
+      templateUrl: 'templates/directives/feed-item.html',
       link:function(scope, element, attrs){
-          scope.cv = function(obj){
-            alert(55);
+          scope.aaa = function(){
+            alert(444);
             
           };
           
           scope.data = scope.item.getUIData();
           
-          var template = '<div class="card">' +
-                            '<div class="item item-avatar">' +
-                              '<img src="{{::data.profileImg}}">' +
-                              '<h2>{{::data.profileName}}</h2>' +
-                              '<p>{{::data.time}}</p>' +
-                            '</div>' +
-                            '<div class="item item-body" ng-click="refreshAccount(item)">' +
-                              '<p class="test">RAMAMMAMAMAMAMAM...</p>' +
-                              '<p ng-bind-html="data.itemText"></p>' +
-                              '<p ng-bind-html="data.itemMedia"></p>' +
-                              '<p>' +
-                                '<a href="#" class="subdued">1 Like</a>' +
-                                '<a href="#" class="subdued">5 Comments</a>' +
-                              '</p>' +
-                              '<manage-test></manage-test>' +
-                            '</div>' +
-                        '</div>';
+          var $this = $(element);
 
-          template = $(template); 
+          
+          //likes , comments and shares
+          if( scope.data.lc_disp )
+          {
+              if( ! $.isEmptyObject(scope.data.likes ) )
+              {
+                  var $likes = '<span ng-click="aaa()">'+scope.data.likes.text+'</span>';
+                  $(element).find('.item-likes-comments').append( $compile($likes)(scope) );
+              }
 
+              if( ! $.isEmptyObject(scope.data.comments ) )
+              {
+                  var $comments = '<span >'+scope.data.comments.text+'</span>';
+                  $(element).find('.item-likes-comments').append( $compile($comments)(scope) );
+              }
+
+              if( ! $.isEmptyObject(scope.data.shares ) )
+              {
+                  var $shares = '<span >'+scope.data.shares.text+'</span>';
+                  $(element).find('.item-likes-comments').append( $compile($shares)(scope) );
+              }
+          }
+          
           //template.find('.test').append(scope.data.itemTest);             
-          element.append( $compile(template)(scope) );
+          //element.append( $compile(template)(scope) );
                         
           
       }

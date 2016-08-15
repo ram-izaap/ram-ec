@@ -147,7 +147,7 @@ module.exports = ['$http', '$state', '$rootScope', '$localStorage', 'EC', 'apiUr
         {
             var title = '';
 
-            if ( this.data.name != undefined ) title = '<a href="' +this.data.permalink+ '" class="title" target="_blank">' +( this.data.name || '')+ '</a>';
+            if ( this.data.name !== undefined ) title = '<a href="' +this.data.permalink+ '" class="title" target="_blank">' +( this.data.name || '')+ '</a>';
 
             message_html = title + ( this.data.message || ''); 
             //message_html = title + ( url_to_link( this.data.message ) || '');   
@@ -155,10 +155,10 @@ module.exports = ['$http', '$state', '$rootScope', '$localStorage', 'EC', 'apiUr
 
         else if ( this.feed.network == 'twitter' || this.data.eventNetwork == 'twitter' )
         {
-            if ( this.data.raw_data.retweeted_status == undefined && this.data.raw_data.quoted_tweet != undefined 
-                && this.data.raw_data.quoted_tweet.streamEntry != undefined && !$.isEmptyObject( this.data.raw_data.quoted_tweet.streamEntry ) )
+            if ( this.data.raw_data.retweeted_status === undefined && this.data.raw_data.quoted_tweet !== undefined 
+                && this.data.raw_data.quoted_tweet.streamEntry !== undefined && !$.isEmptyObject( this.data.raw_data.quoted_tweet.streamEntry ) )
             {
-                if ( this.data.raw_data.entities.urls != undefined && !$.isEmptyObject( this.data.raw_data.entities.urls ) )
+                if ( this.data.raw_data.entities.urls !== undefined && !$.isEmptyObject( this.data.raw_data.entities.urls ) )
                 {
                     var urls = this.data.raw_data.entities.urls
                         ,first_url;
@@ -175,7 +175,7 @@ module.exports = ['$http', '$state', '$rootScope', '$localStorage', 'EC', 'apiUr
                 // message_html = this.data.message;
                 message_html = EC.tw_deep_link_to_html( this.data.message, this.data.raw_data );
 
-                if ( this.data.message != undefined )
+                if ( this.data.message !== undefined )
                 {
                     function getPosition(str, m, i) 
                     {
@@ -188,7 +188,7 @@ module.exports = ['$http', '$state', '$rootScope', '$localStorage', 'EC', 'apiUr
                     message_html = message_html.substring(0, result);
                 }
 
-                if ( this.data.raw_data.entities && this.data.raw_data.entities.urls != undefined && !$.isEmptyObject( this.data.raw_data.entities.urls ) )
+                if ( this.data.raw_data.entities && this.data.raw_data.entities.urls !== undefined && !$.isEmptyObject( this.data.raw_data.entities.urls ) )
                 {
                     var urls = this.data.raw_data.entities.urls;
                     EC.for_each(urls, function ( url ) 
@@ -373,11 +373,11 @@ module.exports = ['$http', '$state', '$rootScope', '$localStorage', 'EC', 'apiUr
 
                 // console.dir( this.data.mediaDescription );
                 
-                if ( this.data.mediaDescription != undefined && !$.isEmptyObject( this.data.mediaDescription ) ) stuff = this.data.mediaDescription;
+                if ( this.data.mediaDescription !== undefined && !$.isEmptyObject( this.data.mediaDescription ) ) stuff = this.data.mediaDescription;
 
-                else if ( this.data.caption != undefined ) stuff = this.data.caption;
+                else if ( this.data.caption !== undefined ) stuff = this.data.caption;
 
-                     else if (this.data.media.alt != undefined && this.data.media.alt != this.data.message ) stuff = this.data.media.alt;
+                     else if (this.data.media.alt !== undefined && this.data.media.alt != this.data.message ) stuff = this.data.media.alt;
 
                 if ( /*this.feed.id != 'pi_board'*/this.feed.network != 'pinterest' ) stuff = EC.replaceURLWithHTMLLinks( stuff );
 
@@ -393,23 +393,23 @@ module.exports = ['$http', '$state', '$rootScope', '$localStorage', 'EC', 'apiUr
 
                 if ( this.feed.network == 'googleplus' || this.data.eventNetwork == 'googleplus')
                 {
-                    if ( this.data.media != undefined )
+                    if ( this.data.media !== undefined )
                     {
                         var gp_img;
 
-                        if ( this.data.media.fullImage != undefined && this.data.media.fullImage.url != undefined )
+                        if ( this.data.media.fullImage !== undefined && this.data.media.fullImage.url !== undefined )
                         {
                             gp_img = this.data.media.fullImage.url;    
                         }
 
-                        else if ( this.data.media.image != undefined && this.data.media.image.url != undefined )
+                        else if ( this.data.media.image !== undefined && this.data.media.image.url !== undefined )
                         {
                             gp_img = this.data.media.image.url;    
                         }
 
-                        if ( this.data.media.content != undefined && !$.isEmptyObject( this.data.media.content ) ) stuff = this.data.media.content;
+                        if ( this.data.media.content !== undefined && !$.isEmptyObject( this.data.media.content ) ) stuff = this.data.media.content;
 
-                        if ( gp_img != undefined )
+                        if ( gp_img !== undefined )
                         {
                             ext_element = $(
                                 "<div class='fb_image'><img class=\"full-image\" src='" + gp_img + 
@@ -442,7 +442,7 @@ module.exports = ['$http', '$state', '$rootScope', '$localStorage', 'EC', 'apiUr
             }
             else if(this.data.media.type=="video")
             {
-                var stuff = ( EC.replaceURLWithHTMLLinks( this.data.mediaDescription == undefined ? (this.data.caption == undefined ? (this.data.media.alt == this.data.message ? '' : this.data.media.alt) : this.data.caption ) : this.data.mediaDescription ) || '');
+                var stuff = ( EC.replaceURLWithHTMLLinks( this.data.mediaDescription === undefined ? (this.data.caption === undefined ? (this.data.media.alt == this.data.message ? '' : this.data.media.alt) : this.data.caption ) : this.data.mediaDescription ) || '');
 
                 var link_text = 'Watch video';
                 var meta_info = '';
@@ -464,12 +464,12 @@ module.exports = ['$http', '$state', '$rootScope', '$localStorage', 'EC', 'apiUr
 
                 else if ( this.feed.network == 'googleplus' || this.data.eventNetwork == 'googleplus')
                 {
-                    if ( this.data.media.content != undefined && !$.isEmptyObject( this.data.media.content ) ) stuff = this.data.media.content;   
+                    if ( this.data.media.content !== undefined && !$.isEmptyObject( this.data.media.content ) ) stuff = this.data.media.content;   
 
                     meta_info = '<a class="ph_link font-weight mar-4 ui-link" href="#">' + ( this.data.media.displayName || 'Watch video' ) + '</a>';
                 }
 
-                if ( this.data.media != undefined && this.data.media.video != undefined ) ext_element = $(
+                if ( this.data.media !== undefined && this.data.media.video !== undefined ) ext_element = $(
                     "<div class='ui-grid-solo l_message'>" +
                     "<div class='img_box video ui-grid-solo position-relative'><img class=\"video-button\" src=\"img/play-button.png\"><img class=\"full-image\" src='" + this.data.media.src.replace('Fdefault', 'Fhqdefault').replace('/default', '/hqdefault') + "'></div>" +
                     "<div class='clear'></div><div class='padlr10'>" +
@@ -480,7 +480,7 @@ module.exports = ['$http', '$state', '$rootScope', '$localStorage', 'EC', 'apiUr
                     "</div>"
                 );
 
-                if ( this.data.media != undefined && this.data.media.video != undefined ) ext_element.on('click',function ( event )
+                if ( this.data.media !== undefined && this.data.media.video !== undefined ) ext_element.on('click',function ( event )
                 {
                     // console.dir( self )
                     event.stopPropagation();
@@ -490,7 +490,7 @@ module.exports = ['$http', '$state', '$rootScope', '$localStorage', 'EC', 'apiUr
                     //post_manager.watchPictureVideo(mediaObject, true);
                 });
 
-                if ( this.data.media != undefined && this.data.media.video != undefined ) ext_element.on('click', '.yt-user-name' ,function ( event )
+                if ( this.data.media !== undefined && this.data.media.video !== undefined ) ext_element.on('click', '.yt-user-name' ,function ( event )
                 {
                     event.stopPropagation();
                 });
@@ -500,19 +500,19 @@ module.exports = ['$http', '$state', '$rootScope', '$localStorage', 'EC', 'apiUr
             {
                 var stuff = '', url_n;
 
-                if ( this.data.media.content != undefined && !$.isEmptyObject( this.data.media.content ) ) stuff = this.data.media.content;
+                if ( this.data.media.content !== undefined && !$.isEmptyObject( this.data.media.content ) ) stuff = this.data.media.content;
 
-                 if ( this.data.media.fullImage != undefined && this.data.media.fullImage.url != undefined )
+                 if ( this.data.media.fullImage !== undefined && this.data.media.fullImage.url !== undefined )
                 {
                     url_n = this.data.media.fullImage.url;    
                 }
 
-                else if ( this.data.media.image != undefined && this.data.media.image.url != undefined )
+                else if ( this.data.media.image !== undefined && this.data.media.image.url !== undefined )
                 {
                     url_n = this.data.media.image.url;    
                 }
 
-                if ( url_n != undefined )
+                if ( url_n !== undefined )
                 {
                     ext_element = $(
                         "<div class='ui-grid-solo l_message'>" +
@@ -553,27 +553,27 @@ module.exports = ['$http', '$state', '$rootScope', '$localStorage', 'EC', 'apiUr
             else{
                 if($.isEmptyObject(this.data.media.src))
                 {
-                    var stuff = ( EC.replaceURLWithHTMLLinks( this.data.mediaDescription == undefined ? (this.data.caption == undefined ? (this.data.media.alt != this.data.message ? '' : this.data.media.alt) : this.data.caption ) : this.data.mediaDescription ) || '');
+                    var stuff = ( EC.replaceURLWithHTMLLinks( this.data.mediaDescription === undefined ? (this.data.caption === undefined ? (this.data.media.alt != this.data.message ? '' : this.data.media.alt) : this.data.caption ) : this.data.mediaDescription ) || '');
 
                     if ( this.feed.network == 'googleplus' || this.data.eventNetwork == 'googleplus')
                     {
-                        if ( this.data.media != undefined )
+                        if ( this.data.media !== undefined )
                         {
                             var gp_img;
 
-                            if ( this.data.media.fullImage != undefined && this.data.media.fullImage.url != undefined )
+                            if ( this.data.media.fullImage !== undefined && this.data.media.fullImage.url !== undefined )
                             {
                                 gp_img = this.data.media.fullImage.url;    
                             }
 
-                            else if ( this.data.media.image != undefined && this.data.media.image.url != undefined )
+                            else if ( this.data.media.image !== undefined && this.data.media.image.url !== undefined )
                             {
                                 gp_img = this.data.media.image.url;    
                             }
 
-                            if ( this.data.media.content != undefined && !$.isEmptyObject( this.data.media.content ) ) stuff = this.data.media.content;
+                            if ( this.data.media.content !== undefined && !$.isEmptyObject( this.data.media.content ) ) stuff = this.data.media.content;
 
-                            if ( gp_img != undefined )
+                            if ( gp_img !== undefined )
                             {
                                 ext_element = $(
                                     "<div class='fb_image'><img class=\"full-image\" src='" + gp_img + 
@@ -605,7 +605,7 @@ module.exports = ['$http', '$state', '$rootScope', '$localStorage', 'EC', 'apiUr
 
                 else
                 {
-                    var stuff = ( EC.replaceURLWithHTMLLinks( this.data.mediaDescription == undefined ? (this.data.caption == undefined ? (this.data.media.alt != this.data.message ? '' : this.data.media.alt) : this.data.caption ) : this.data.mediaDescription ) || '');
+                    var stuff = ( EC.replaceURLWithHTMLLinks( this.data.mediaDescription === undefined ? (this.data.caption === undefined ? (this.data.media.alt != this.data.message ? '' : this.data.media.alt) : this.data.caption ) : this.data.mediaDescription ) || '');
                     ext_element = $(
                         "<div class='l_message ui-grid-solo'>" +
                         "<div class='img_box'><img class=\"full-image\" src='" + this.data.media.src + "' ></div>" +
@@ -625,10 +625,10 @@ module.exports = ['$http', '$state', '$rootScope', '$localStorage', 'EC', 'apiUr
 
             //$this.addClass('has_media')
         }
-        else if ( this.data.raw_data != undefined && this.data.raw_data.entities != undefined /*&& this.data.raw_data.entities.media != undefined*/ )
+        else if ( this.data.raw_data !== undefined && this.data.raw_data.entities !== undefined /*&& this.data.raw_data.entities.media != undefined*/ )
         {
-            if ( this.data.raw_data.retweeted_status == undefined && this.data.raw_data.quoted_tweet != undefined 
-                && this.data.raw_data.quoted_tweet.streamEntry != undefined && !$.isEmptyObject( this.data.raw_data.quoted_tweet.streamEntry ) )
+            if ( this.data.raw_data.retweeted_status === undefined && this.data.raw_data.quoted_tweet !== undefined 
+                && this.data.raw_data.quoted_tweet.streamEntry !== undefined && !$.isEmptyObject( this.data.raw_data.quoted_tweet.streamEntry ) )
             {
                 var quoted_tweet = this.data.raw_data.quoted_tweet.streamEntry
                     ,$quoted_tweet_container = $('<div>', { class: 'quoted-tweet-container' })
@@ -638,7 +638,7 @@ module.exports = ['$http', '$state', '$rootScope', '$localStorage', 'EC', 'apiUr
                     ,first_url = ''
                     ;
 
-                if ( self.data.raw_data.entities.urls != undefined )
+                if ( self.data.raw_data.entities.urls !== undefined )
                 {
                     var urls = self.data.raw_data.entities.urls;
 
@@ -697,7 +697,7 @@ module.exports = ['$http', '$state', '$rootScope', '$localStorage', 'EC', 'apiUr
                     }, 1);
                 });
 
-                if ( quoted_tweet.entities != undefined && quoted_tweet.entities.media != undefined )
+                if ( quoted_tweet.entities !== undefined && quoted_tweet.entities.media !== undefined )
                 {
                     $quoted_tweet_media.html( '<img class="twitter-image full-image" src="' + quoted_tweet.entities.media.media_url + '">')
                     .on('click', function ()
@@ -719,7 +719,7 @@ module.exports = ['$http', '$state', '$rootScope', '$localStorage', 'EC', 'apiUr
                 ext_element = $quoted_tweet_container;
             }
 
-            else if ( this.data.raw_data.entities.media != undefined )
+            else if ( this.data.raw_data.entities.media !== undefined )
             {
                 /*var post_media_element = TwitterFeed.prototype.get_post_media_element.call( undefined, this.data.raw_data, $this.find('.item-media') );
                 ext_element = post_media_element[0];
@@ -747,6 +747,296 @@ module.exports = ['$http', '$state', '$rootScope', '$localStorage', 'EC', 'apiUr
         return $.type(itemMedia) == 'object' ? itemMedia.html(): itemMedia;
     };
 
+    TimelineFeedItem.prototype.getLikesComments = function()
+    {
+        var self = this,
+            likes = {},
+            dislikes = {},
+            comments = {},
+            shares = {};
+
+        self.likes_comments_flag = true;
+
+        if ( self.feed.network == 'facebook' )
+        {
+            // likes
+            if ( self.data.likes === undefined )
+            {
+                likes.count = 0;
+                likes.text = '0 likes';
+            } 
+            else
+            {
+                
+                if ( !Array.isArray( self.data.likes.like )) self.data.likes.like = [ self.data.likes.like ];
+
+                likes.count = self.data.likes.count;
+                likes.text = EC.post_likes_text( parseInt( self.data.likes.count ), self.data.user_likes ==  'true');
+
+            }
+
+            // comments
+            if ( self.data.comments === undefined ) 
+            {
+                comments.count = 0;
+                comments.text = '0 comments';
+                
+            }
+
+            else if ( parseInt( self.data.comments.count ) == 1 )
+            {
+                if ( !Array.isArray( self.data.comments.comment ) ) self.data.comments.comment = [ self.data.comments.comment ];
+                comments.count = 1;
+                comments.text = '1 comment';                
+            }
+            
+            else 
+            {
+                comments.count = self.data.comments.count;
+                comments.text = self.data.comments.count + ' comments';
+            }
+
+            if ( self.data.sharedCound !== undefined ) 
+            {
+                shares.count    = self.data.sharedCound;
+                shares.text     = self.data.sharedCound+' Share'+(self.data.sharedCound=='1'?'':'s');
+            }
+
+            if ( ( self.data.isActivity !== undefined && self.data.isActivity == 'true' )
+                || ( ( self.feed.id == 'search' || self.feed.id == 'outreach' ) && this.feed.options.parameters.type == 'user' ) || this.feed.id == 'fb_notifications' )
+            {
+                self.likes_comments_flag = false;
+            }
+
+            //display non-clickable likes for FB pages
+            else if ( ( this.feed.id == 'search' || this.feed.id == 'outreach' )
+                && ( this.feed.options.parameters.type == 'page' || this.feed.options.parameters.type == 'place') )
+            {
+                //reset likes & comments
+                likes = {};
+                comments = {};
+
+                if ( typeof this.data.likes !== 'string' ) this.data.likes = '0';
+                else
+                {
+                    if ( this.data.likes === '0' ) {}
+                    else
+                    {
+                        try
+                        {
+                            var temp_likes = JSON.parse(this.data.likes);
+                            if ( temp_likes.data && temp_likes.data.length )
+                            {
+                                this.data.likes = ( temp_likes.data.length === 25 ? '25+' : temp_likes.data.length );
+                            }
+                            else this.data.likes = '0';
+                        }
+                        catch( e )
+                        {
+                            this.data.likes = '0';
+                        }
+                    }
+                }
+                
+                shares.count    = self.data.likes;
+                shares.text     = self.data.likes+' Share'+(self.data.likes=='1'?'':'s');
+
+                  
+            }      
+        }
+
+        else if ( self.feed.network == 'twitter')
+        {
+            // retweets
+            if ( this.data.retweets.count != undefined ) 
+            {
+                likes.count = self.data.retweets.count;
+                likes.text = EC.numberWithCommas( this.data.retweets.count )+ ' retweet' + ( this.data.retweets.count == '1' ? '' : 's' );
+            }
+            
+            comments.count  = self.data.favorites.count;
+            comments.text   = EC.numberWithCommas( self.data.favorites.count ) + ' like' + ( self.data.favorites.count == '1' ? '' : 's' );
+            
+        }
+
+        else if ( this.feed.network == 'linkedin')
+        {
+            // likes
+            if ( self.data.likes == undefined ) 
+            {
+                likes.count = 0;
+                likes.text  = 'O likes';
+            }
+
+            else
+            {
+                if ( parseInt( self.data.likes.count ) == 1 ) self.data.likes.like = [ self.data.likes.like ];
+
+                likes.count = self.data.likes.count;
+                likes.text = EC.post_likes_text( parseInt( self.data.likes.count ), self.data.user_likes ==  'true');
+
+            }
+
+            // comments
+            if ( self.data.comments == undefined ) 
+            {
+                comments.count  = 0;
+                comments.text   = '0 comments';
+            }
+
+            else 
+            {
+                if ( parseInt( self.data.comments.count ) == 1 ) self.data.comments.comment = [ self.data.comments.comment ];
+
+                comments.count  = self.data.comments.count;
+                comments.text   = EC.numberWithCommas( self.data.comments.count ) + ' comment' + ( self.data.comments.count == '1' ? '' : 's' );
+            }            
+        }
+
+        else if ( this.feed.network == 'youtube' || this.feed.network == 'blogger')
+        {
+            //likes/dislikes
+            if ( this.feed.network == 'youtube' ) 
+            {
+                likes.count = self.data.likes.count;
+                likes.text  = EC.post_likes_text( self.data.likes.count, self.data.media.rating == 'like' );
+
+                dislikes.count = self.data.likes.dislikes;
+                dislikes.text = EC.post_likes_text( self.data.likes.dislikes, self.data.media.rating == 'dislike', true );
+            }
+
+            //comments
+            var comments_text;
+
+            if ( $.isEmptyObject(self.data.comments) ) 
+            {
+                comments.count = 0;
+                comments.text = '0 comments';
+            }
+
+            else
+            {
+                comments.count = self.data.comments.count;
+                comments.text = EC.numberWithCommas( self.data.comments.count ) + ' comment' + ( self.data.comments.count == 1 ) ?'':'s';
+            }
+            
+            if ( $.isEmptyObject(self.data.likes) && $.isEmptyObject(self.data.comments) )
+            {
+                self.likes_comments_flag = false;
+            }
+
+        }
+
+        else if ( this.feed.network == 'googleplus' || this.data.eventNetwork == 'googleplus')
+        {
+            //plusones
+            if ( self.data.likes == undefined ) 
+            {
+                likes.count = 0;
+                likes.text = '0 likes';
+            }
+
+            else
+            {
+                var you = '',
+                    count = parseInt( self.data.likes.count );
+
+                if ( self.data.likes.is_plusoned == 'true' ) 
+                {
+                    count--;
+                    you = "You + ";
+                }
+                else you = '+ ';
+
+                //just in case
+                if ( count < 0 ) count = 0; 
+
+                likes.count = self.data.likes.count;
+                likes.text = EC.numberWithCommas( count );
+            }
+
+            //comments
+            var comments_text;
+
+            if ( $.isEmptyObject(self.data.comments) ) 
+            {
+                comments.count = 0;
+                comments.text = '0 comments';                
+            }
+
+            else
+            {
+                ending = 's';
+
+                if ( self.data.comments.count == 1 ) ending = '';
+                
+                comments_text = EC.numberWithCommas( self.data.comments.count ) + ' comment' + ending;
+
+                comments.count = self.data.comments.count;
+                comments.text = comments_text;
+
+            }
+
+            //resharers
+            if ( this.data.resharers != undefined && this.data.resharers.count != '0' ) 
+            {
+                shares.count = this.data.resharers.count;
+                shares.text = this.data.resharers.count+' Share'+(this.data.resharers.count=='1'?'':'s');
+            }
+
+            if ( $.isEmptyObject(self.data.likes) && $.isEmptyObject(self.data.comments) )
+            {
+                self.likes_comments_flag = false;
+            }
+        }
+
+        else if ( this.feed.network == 'pinterest')
+        {
+            if ( self.data.repins != '') 
+            {
+                comments.count = self.data.repins;
+                comments.text = EC.numberWithCommas( self.data.repins ) + ' Repin' + (self.data.repins=='1'?'':'s');
+            }
+
+            else 
+            {
+                comments.count  = 0;
+                comments.text   = '0 Repins';
+            }
+
+            if ( self.data.likes && self.data.likes.count != 0) 
+            {
+                likes.count = self.data.likes.count;                
+            }
+
+            else likes.count = 0;
+
+            likes.text = EC.numberWithCommas( likes.count ) + ' Like' + (likes.count==1?'':'s')
+
+            if ( self.data.comments && self.data.comments.count != 0) 
+            {
+                comments.count = self.data.comments.count;
+            }
+
+            else comments.count = 0;
+
+            comments.text = EC.numberWithCommas( comments.count ) + ' Comment' + (comments.count == 1?'':'s');
+            
+        }
+
+        else if ( this.feed.id == 'cinbox' )
+        {
+            if ( this.data.eventType == 'FBComments' || this.data.eventType == 'FBShares' 
+                || this.data.eventType == 'FBOthers' || this.data.eventType == 'FBLikes' || this.data.eventType == 'FBWallPosts' ) 
+                {
+                    self.likes_comments_flag = false;
+                }
+        }
+
+        return {'likes':likes,'dislikes':dislikes,'comments':comments,'shares':shares,'lc_flag':self.likes_comments_flag};
+
+    };
+
     TimelineFeedItem.prototype.getUIData = function()
     {
         console.log('getUIData');
@@ -761,6 +1051,16 @@ module.exports = ['$http', '$state', '$rootScope', '$localStorage', 'EC', 'apiUr
         //item text 
         UIData.itemText     = self.getItemText();
         UIData.itemMedia    = self.getItemMedia();
+
+        //likes and comments
+        var lc          = self.getLikesComments();
+        UIData.likes    = lc.likes;
+        UIData.dislikes = lc.dislikes;
+        UIData.comments = lc.comments;
+        UIData.shares   = lc.shares;
+        UIData.lc_disp  = lc.lc_flag;
+
+
         return UIData;
 
     };
