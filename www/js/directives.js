@@ -118,28 +118,19 @@ module.exports = angular.module('eclincher.directives', [])
     };
 })
 
-.directive('feedItem', function(){
+.directive('manageTest', function($compile){
     return {
       restrict: 'E',
       scope: {
         item: '=item'
       },
-      templateUrl: 'templates/directives/feed-item.html',
+      //templateUrl: 'templates/directives/manage-profile.html',
       link:function(scope, element, attrs){
-          scope.cv = function(obj){
-            alert(55);
-            
-          };
+          var template = '<p>MMMMMMMMMMMMMMMMMMMMMMMM</p>';
 
-          scope.data = scope.item.getUIData();
-          
-          scope.refreshAccount = function( obj ){
-            console.log(obj);
-          };
-
-          scope.deleteAccount = function( obj ){
-            console.log(obj);
-          };
+          template = $(template); 
+          //template.find('.test').append(scope.data.itemTest);             
+          element.append( $compile(template)(scope) );
       }
     };
 });

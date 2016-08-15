@@ -338,8 +338,8 @@ module.exports = ['$http', '$state', '$rootScope', '$localStorage', 'EC', 'apiUr
 
             if ( obj.data === undefined || obj.data.length < 1 ) 
             {
-                self.element.find('.feed-items').html('<center class="center">Data is momentarily unavailable, please try again in a few minutes.</center>');
-                self.element.find('.feed-body').iscrollview("refresh");
+                //self.element.find('.feed-items').html('<center class="center">Data is momentarily unavailable, please try again in a few minutes.</center>');
+                //self.element.find('.feed-body').iscrollview("refresh");
             }
 
             //if ( obj.paging != undefined ) self.next = obj.paging.next;

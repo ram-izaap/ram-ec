@@ -18,13 +18,13 @@ module.exports = angular.module('eclincher.services.socialManager', [])
 
 		.factory('LinkedinFeedItem', require('./app/social/linkedinFeedItem')) 
 
-		.factory('InstagramFeedItem', require('./app/social/InstagramFeedItem'))
+		.factory('InstagramFeedItem', require('./app/social/instagramFeedItem'))
 
 		.factory('CollapsibleFeedItem', require('./app/social/collapsibleFeedItem'))
 
 		.factory('LinkedinCollapsibleFeedItem', require('./app/social/linkedinCollapsibleFeedItem')) 
 
-		.factory('TwitterCollapsibleFeedItem', require('./app/social/TwitterCollapsibleFeedItem')) 
+		.factory('TwitterCollapsibleFeedItem', require('./app/social/twitterCollapsibleFeedItem')) 
 
 		.factory('FacebookFeed', require('./app/social/facebookFeed'))
 
@@ -40,4 +40,18 @@ module.exports = angular.module('eclincher.services.socialManager', [])
 
 		.factory('YouTubeFeed', require('./app/social/youTubeFeed'))
 
-		.factory('InstagramFeed', require('./app/social/instagramFeed'));
+		.factory('InstagramFeed', require('./app/social/instagramFeed'))
+
+		.directive('feedItem', require('./app/social/directives/feedItem'))
+
+		.directive('timelineFeedItem', require('./app/social/directives/timelineFeedItem'))
+
+		.directive('linkedinFeedItem', require('./app/social/directives/linkedinFeedItem'))
+
+		.directive('instagramFeedItem', require('./app/social/directives/instagramFeedItem'))
+
+		.directive('collapsibleFeedItem', require('./app/social/directives/collapsibleFeedItem'))
+
+		.directive('linkedinCollapsibleFeedItem', require('./app/social/directives/linkedinCollapsibleFeedItem'))
+
+		.directive('twitterCollapsibleFeedItem', require('./app/social/directives/twitterCollapsibleFeedItem'));

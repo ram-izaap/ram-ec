@@ -140,7 +140,7 @@ module.exports = ['$http', '$state', '$rootScope', '$localStorage', 'EC', 'apiUr
 
             if ( data !== undefined && data.data !== undefined && data.data.length < 1 )
             {
-                self.element.find('.more').remove();
+                //self.element.find('.more').remove();
                 //self.hide_pullup(); 
             }
 
