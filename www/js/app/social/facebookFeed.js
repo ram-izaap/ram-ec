@@ -207,8 +207,8 @@ module.exports = ['$http', '$state', '$rootScope', '$localStorage', 'EC', 'apiUr
     {
         if ( this.id == 'fb_likes' || this.id == 'outreach' || ( this.id == 'newsFeed' && !this.next ) )
         {
-            //this.element.find('.more').remove(); 
-            //this.hide_pullup();
+            //stop lode more 
+            this.load_more_flag = false;
             return;
         }
 
@@ -283,8 +283,7 @@ module.exports = ['$http', '$state', '$rootScope', '$localStorage', 'EC', 'apiUr
 
             if ( data.data !== undefined && data.data.length < 1 ) 
             {
-                //self.element.find('.more').remove();
-                //self.hide_pullup(); 
+                //stop lode more  
                 self.load_more_flag = false;               
             }
 
@@ -295,8 +294,8 @@ module.exports = ['$http', '$state', '$rootScope', '$localStorage', 'EC', 'apiUr
                     if ( self.next == data.paging.next )
                     {
                         self.next = false;
-                        //self.element.find('.more').remove();
-                        //self.hide_pullup(); 
+                        
+                        //stop lode more  
                         self.load_more_flag = false;
                     } 
 
@@ -307,8 +306,7 @@ module.exports = ['$http', '$state', '$rootScope', '$localStorage', 'EC', 'apiUr
                 
                 else
                 {
-                    //self.element.find('.more').remove();
-                    //self.hide_pullup(); 
+                    //stop lode more  
                     self.load_more_flag = false;
                     self.add_items( data.data );
                 }   
