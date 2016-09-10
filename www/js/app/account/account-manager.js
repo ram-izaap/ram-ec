@@ -2,7 +2,9 @@
     accountManager module
 */
 
-module.exports = ['$rootScope', '$localStorage', 'EC', 'apiUrl', 'Account', 'UserSettings', '$cordovaInAppBrowser', function($rootScope, $localStorage, EC, apiUrl, Account, UserSettings, $cordovaInAppBrowser ){  
+module.exports = ['$rootScope', '$localStorage', 'EC', 'apiUrl', 'Account', '$cordovaInAppBrowser', '$injector', function($rootScope, $localStorage, EC, apiUrl, Account, $cordovaInAppBrowser, $injector ){  
+
+    var UserSettings =  UserSettings || $injector.get('UserSettings');
 
     var initialized = false,
         data = {},
@@ -24,7 +26,8 @@ module.exports = ['$rootScope', '$localStorage', 'EC', 'apiUrl', 'Account', 'Use
         module.search_rendered = false;
         module.rss_rendered = false;
 
-    
+    EC.accountManager = this;
+        
     this.init = function ( callback )
     {
         console.log('accountManager init');
@@ -146,6 +149,48 @@ module.exports = ['$rootScope', '$localStorage', 'EC', 'apiUrl', 'Account', 'Use
         module.go_back_flag = flag;
     };
     
+    /* 
+    *  Function for Initizlizing Inbox account
+    */
+    this.init_inbox = function( callback ){
+
+        // INBOX ACCOUNT
+        var cinbox = {
+            accountId: 'cinbox',
+            type: 'Cinbox',
+            monitored: 'on',
+            creationDate: "000000",
+            nickName: "inboxxx",
+            userAccessToken: "000000",
+            userRefreshToken: "000000",
+            config: [{
+                sampleId: 'cinbox',
+                monitored: 'on',
+                editorMonitored: "off",
+                pageAccessToken: "000000",
+                pageCategory: "User",
+                pageId: "000000",
+                pageName: 'InboxPage',
+                socialMonitored: 'off',
+                workingCalendar: 'off',
+                accountStreams: {
+                    stream: [{
+                        id: 'cinbox',
+                        streamId: 'cinbox',
+                        network: 'cinbox',
+                        value: 'true'
+                    }]
+                }
+            }]
+        };
+
+        cinbox_account = new Account( cinbox );
+
+        //if callback is valid function, then call it
+        if( typeof callback == 'function' )
+            callback(cinbox_account);
+    };
+
     this.find = function ( account_id )
     {
         return accounts_by_id[ account_id ];

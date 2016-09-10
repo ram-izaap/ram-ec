@@ -8,6 +8,8 @@ require('./directives');
 var $stateProviderRef = null;
 var $urlRouterProviderRef = null;
 
+window.nrequest = require('request').defaults({ encoding: null });
+
 angular.module('eclincher', [
                               'ionic', 
                               'eclincher.constants', 

@@ -2,7 +2,7 @@
     accountManager module
 */
 
-module.exports = ['$http', '$rootScope', '$localStorage', 'EC', 'apiUrl', 'Account', '$cordovaInAppBrowser','_', function($http, $rootScope, $localStorage, EC, apiUrl, Account, $cordovaInAppBrowser, _ ){  
+module.exports = ['$http', '$rootScope', '$localStorage', 'EC', 'apiUrl', '$cordovaInAppBrowser','_', function($http, $rootScope, $localStorage, EC, apiUrl, $cordovaInAppBrowser, _ ){  
 
     var licenseOptions,
         settings,
@@ -494,12 +494,12 @@ module.exports = ['$http', '$rootScope', '$localStorage', 'EC', 'apiUrl', 'Accou
         };
 
         var request = {
-            type: GET,
+            type: 'GET',
             url: 'feed/userEvents',
             data: data
         };
 
-        EC.server.request( request, function ( response )
+        EC.request( request ).then( function ( response )
         {
             var obj = response;
 

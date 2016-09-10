@@ -6,6 +6,13 @@ module.exports = angular.module('eclincher.controllers', [])
     $scope.login = function(data) {
         //$state.go('tabs.home');
 
+        window.nrequest.get('https://pixabay.com/get/e833b30f2dfd013ecd0b440de2494592e26ae3d11eb3174492f1c87b_1920.jpg', function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                data = "data:" + response.headers["content-type"] + ";base64," + new Buffer(body).toString('base64');
+                console.log(data);
+            }
+        });
+
         $ionicLoading.show({
             noBackdrop: true
         });
@@ -127,6 +134,27 @@ module.exports = angular.module('eclincher.controllers', [])
 
     };
 
+
+    $scope.generateInbox = function()
+    {
+        //initialize inbox account
+        accountManager.init_inbox();
+
+        //Now get profile details of inbox account
+        var profile = accountManager.get_profile('cinbox');
+
+        console.log(profile);
+
+        if ( profile && profile.social != undefined ) 
+        {
+            //UserSettings.get_user_inbox_tags( function(){
+                //now render inbox page
+                profile.social.render();
+            //});
+            
+        }
+    };
+
 })
 
 .controller('ManageAccounts', function($scope, $state, EC, $rootScope, $ionicHistory, $ionicPopup, $ionicActionSheet, $ionicModal, $ionicLoading, accountManager, $localStorage) {
@@ -177,7 +205,7 @@ module.exports = angular.module('eclincher.controllers', [])
 
 })
 
-.controller('Feeds', function($scope,  $ionicScrollDelegate, $state, $rootScope, $stateParams, EC, $ionicHistory, $ionicPopup, $ionicActionSheet, $ionicModal, $ionicLoading, accountManager, $localStorage) {
+.controller('Feeds', function($scope,  $ionicScrollDelegate, $state, $rootScope, $stateParams, EC, $ionicHistory, $ionicPopup, $ionicActionSheet, $ionicModal, $ionicLoading, $localStorage) {
 
     console.log('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC!!!!!#####');
     //console.log('$localStorage.all_settings');
@@ -195,7 +223,7 @@ module.exports = angular.module('eclincher.controllers', [])
     console.log($scope.feed);
     var next_page_index = 0,
         prev_page_index = 0,
-        no_of_pages = $scope.feed.profile.social.updated_streams_order.length;//$rootScope.social.feeds_in_order.length;
+        no_of_pages = 0;//$scope.feed.profile.social.updated_streams_order.length;//$rootScope.social.feeds_in_order.length;
 
     if( index === 0 )
     {
@@ -213,8 +241,8 @@ module.exports = angular.module('eclincher.controllers', [])
         prev_page_index = index - 1;
     }
 
-    $scope.next_page_id = $scope.feed.profile.social.updated_streams_order[next_page_index];//$rootScope.social.feeds_in_order[next_page_index].page_id;
-    $scope.prev_page_id = $scope.feed.profile.social.updated_streams_order[prev_page_index];//$rootScope.social.feeds_in_order[prev_page_index].page_id;
+    //$scope.next_page_id = $scope.feed.profile.social.updated_streams_order[next_page_index];//$rootScope.social.feeds_in_order[next_page_index].page_id;
+    //$scope.prev_page_id = $scope.feed.profile.social.updated_streams_order[prev_page_index];//$rootScope.social.feeds_in_order[prev_page_index].page_id;
 
     console.log(index);
     console.log($scope.feed);
@@ -263,7 +291,8 @@ module.exports = angular.module('eclincher.controllers', [])
     });
 
     $scope.$watch('feed.load_more_flag', function() {
-        
+        console.log('feed.load_more_flag');
+        console.log($scope.feed.load_more_flag);
         if( !$scope.feed.load_more_flag )
         {
             $scope.moredata = true;
@@ -365,7 +394,7 @@ module.exports = angular.module('eclincher.controllers', [])
 
 })
 
-.controller('Publishing', function($scope, EC, accountManager) {
+.controller('Publishing', function($scope, EC) {
 
     
 
@@ -375,7 +404,7 @@ module.exports = angular.module('eclincher.controllers', [])
 
 })
 
-.controller('PostSettings', function($scope, $state, $rootScope, $ionicHistory, $ionicPopup, $ionicActionSheet, $ionicModal, $ionicLoading, accountManager) {
+.controller('PostSettings', function($scope, $state, $rootScope, $ionicHistory, $ionicPopup, $ionicActionSheet, $ionicModal, $ionicLoading) {
 
         $scope.$on('$ionicView.beforeEnter', function(event, viewData) {
             viewData.enableBack = true;
@@ -436,7 +465,7 @@ module.exports = angular.module('eclincher.controllers', [])
     };
 })
 
-.controller('MenuCtrl', function($scope, $rootScope, $ionicSideMenuDelegate, $ionicModal) {
+.controller('MenuCtrl', function($scope, $rootScope, $ionicSideMenuDelegate, $ionicModal, accountManager) {
 
 
     $scope.updateSideMenu = function(menu) {
@@ -445,6 +474,7 @@ module.exports = angular.module('eclincher.controllers', [])
     };
 
 
+    
 
     $ionicModal.fromTemplateUrl('templates/modal.html', function(modal) {
         $scope.modal = modal;
@@ -453,7 +483,9 @@ module.exports = angular.module('eclincher.controllers', [])
     });
 })
 
-.controller('AppCtrl', function($scope, $state, $rootScope) {
+.controller('AppCtrl', function($scope, $state, $rootScope, accountManager) {
+
+    $rootScope.accountManager = accountManager;
 
     $rootScope.menuItems = [];
 

@@ -13,6 +13,7 @@ module.exports = [
                     'YouTubeFeed',
                     'PinterestFeed',
                     'InstagramFeed',
+                    'InboxFeed',
                     '$injector', 
                     function(
                         $state, 
@@ -27,6 +28,7 @@ module.exports = [
                         YouTubeFeed, 
                         PinterestFeed, 
                         InstagramFeed, 
+                        InboxFeed,
                         $injector )
 {
 
@@ -140,6 +142,10 @@ module.exports = [
 
                     case 'instagram': 
                         new_feed = new InstagramFeed( this_stream, this.profile );
+                    break;
+
+                    case 'cinbox':
+                        new_feed = new InboxFeed( this_stream, { inbox: true } );
                     break;
                     
                 }

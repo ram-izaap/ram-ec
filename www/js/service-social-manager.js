@@ -42,6 +42,8 @@ module.exports = angular.module('eclincher.services.socialManager', [])
 
 		.factory('InstagramFeed', require('./app/social/instagramFeed'))
 
+		.factory('InboxFeed', require('./app/social/inboxFeed'))
+
 		.directive('feedItem', require('./app/social/directives/feedItem'))
 
 		.directive('timelineFeedItem', require('./app/social/directives/timelineFeedItem'))

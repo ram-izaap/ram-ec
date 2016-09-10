@@ -13,6 +13,9 @@ module.exports = [
 
         var favorites = [],
             searches = [];
+
+        
+
         this.request = function(request) {
             $http.defaults.headers.common.user_data = $localStorage.user_data;
             $http.defaults.headers.common.is_mobile_app = '1';
@@ -314,6 +317,119 @@ module.exports = [
             var parts = x.toString().split(".");
             parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             return parts.join(".");
+        };
+
+        this.getUncompletedEventsNumber = function()
+        {
+
+        };
+
+        this.get_user_inbox_filters = function()
+        {
+            var self = this;
+
+            var inbox_filters = [],
+                add_inbox_filters = false,
+                user_inbox_filters = {
+                    user: $localStorage.all_settings.apiUser, 
+                    profileIds: ['all'],
+                    types: ['all'],
+                    //only_completed: false,
+                    //ecRead: true,
+                    searchText: '',
+                    tags: [] 
+                };
+                
+            if ( $localStorage.ec_inbox_filters ) inbox_filters =  $localStorage.ec_inbox_filters ;
+
+            if ( !Array.isArray(inbox_filters) ) inbox_filters = [ inbox_filters ];
+
+            if ( inbox_filters.length == 0 ) 
+            {
+                add_inbox_filters = true;
+            }
+
+            else 
+            {
+                var found = false;
+
+                inbox_filters.forEach(function( filters ) 
+                {
+
+                    if ( filters.user != undefined && filters.user == $localStorage.all_settings.apiUser ) 
+                    {
+                        user_inbox_filters = filters;
+                        found = true;
+
+                        if ( user_inbox_filters.tags == undefined )
+                        {
+                            user_inbox_filters.tags = [];
+                            found = false;
+                        } 
+
+                        if ( user_inbox_filters.types == undefined )
+                        {
+                            user_inbox_filters.types = ['all'];
+                            found = false;
+                        }
+                        
+                        if ( user_inbox_filters.searchText == undefined )
+                        {
+                            user_inbox_filters.searchText = '';
+                            found = false;
+                        }   
+                    }     
+                });
+
+                if ( !found ) add_inbox_filters = true;
+            }
+
+            if ( add_inbox_filters ) self.set_user_inbox_filters( user_inbox_filters );
+
+            return user_inbox_filters;
+        };
+
+        this.set_user_inbox_filters = function( user_inbox_filters, clear_all_flag )
+        {
+            var inbox_filters = [];
+
+            var inbox_serch_text = '';
+
+            if ( $localStorage.ec_inbox_filters ) inbox_filters = $localStorage.ec_inbox_filters;
+
+            if ( !Array.isArray(inbox_filters) ) inbox_filters = [ inbox_filters ];
+
+            var found = false;
+
+            inbox_filters.forEach(function( filters ) 
+            {
+
+                if ( filters.user != undefined && filters.user == $localStorage.all_settings.apiUser ) 
+                {
+                    if( user_inbox_filters.searchText != undefined && user_inbox_filters.searchText.length > 0 && clear_all_flag != undefined )
+                    {                
+                        user_inbox_filters.profileIds   = ["all"];
+                        user_inbox_filters.types        = ["all"];
+                        user_inbox_filters.tags         = [];
+                    }
+
+                    filters.profileIds = user_inbox_filters.profileIds;
+                    filters.tags = user_inbox_filters.tags;
+                    filters.types = user_inbox_filters.types;
+                    filters.searchText = user_inbox_filters.searchText;
+                    found = true; 
+                }     
+            });
+
+            if ( !found ) inbox_filters.push( user_inbox_filters );
+
+            $localStorage.ec_inbox_filters = inbox_filters;
+
+            /*var inbox_filters_cookie = JSON.stringify( inbox_filters );
+
+            localStorage.removeItem('ec_inbox_filters');
+                
+            localStorage.setItem('ec_inbox_filters', inbox_filters_cookie );*/
         };
 
         this.getSideMenu = function(type) {
