@@ -481,6 +481,13 @@ module.exports = angular.module('eclincher.controllers', [])
     }, {
         animation: 'slide-in-up'
     });
+
+    $scope.openModal = function() {
+        $scope.modal.show();
+    };
+    $scope.closeModal = function() {
+        $scope.modal.hide();
+    };
 })
 
 .controller('AppCtrl', function($scope, $state, $rootScope, accountManager) {

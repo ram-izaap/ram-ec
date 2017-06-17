@@ -24,7 +24,7 @@
             </ion-nav-buttons>
         </ion-nav-bar>
 
-        <ion-tabs class="tabs-icon-top tabs-positive {{$root.hideTabs}}">
+        <ion-tabs scrollable-tab class="tabs-icon-top tabs-positive {{$root.hideTabs}}">
 
           <ion-tab title="Home" icon="ion-home" ui-sref="tabs.home">
             <ion-nav-view name="home-tab"></ion-nav-view>
@@ -41,6 +41,40 @@
           <ion-tab title="Feeds" icon="ion-ios-book" ui-sref="tabs.feeds" >
             <ion-nav-view name="feeds-tab"></ion-nav-view>
           </ion-tab>
+
+        
+          <ion-tab title="Home" icon="ion-home" ui-sref="tabs.home1">
+            <ion-nav-view name="home-tab1"></ion-nav-view>
+          </ion-tab>
+
+          <ion-tab title="Publishing" icon="ion-compose" ui-sref="tabs.publishing1" >
+            <ion-nav-view name="publishing-tab1"></ion-nav-view>
+          </ion-tab>
+
+          <ion-tab title="Inbox" icon="ion-archive" ui-sref="tabs.inbox1" >
+            <ion-nav-view name="inbox-tab1"></ion-nav-view>
+          </ion-tab>
+
+          <ion-tab title="Feeds" icon="ion-ios-book" ui-sref="tabs.feeds1" >
+            <ion-nav-view name="feeds-tab1"></ion-nav-view>
+          </ion-tab> 
+
+
+          <ion-tab title="Home" icon="ion-home" ui-sref="tabs.home2">
+            <ion-nav-view name="home-tab2"></ion-nav-view>
+          </ion-tab>
+
+          <ion-tab title="Publishing" icon="ion-compose" ui-sref="tabs.publishing2" >
+            <ion-nav-view name="publishing-tab2"></ion-nav-view>
+          </ion-tab>
+
+          <ion-tab title="Inbox" icon="ion-archive" ui-sref="tabs.inbox2" >
+            <ion-nav-view name="inbox-tab2"></ion-nav-view>
+          </ion-tab>
+
+          <ion-tab title="Feeds" icon="ion-ios-book" ui-sref="tabs.feeds2" >
+            <ion-nav-view name="feeds-tab2"></ion-nav-view>
+          </ion-tab>          
 
         </ion-tabs>              
         <!--<ion-nav-view name="menuContent"></ion-nav-view>-->

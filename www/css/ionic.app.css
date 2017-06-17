@@ -9929,6 +9929,30 @@ a.button {
 .feeds .feeds-dd {
   width: 100%; }
 
+/* Empty. Add your own CSS if you like */
+.tab-nav {
+  top: 40px;
+  padding-top: 30px;
+  width: 70px !important;
+  height: 100% !important; }
+
+.tabs {
+  /*flex-direction: column;
+  height: 800px !important;*/
+  overflow-y: scroll; }
+
+.has-tabs {
+  bottom: 0 !important; }
+
+ion-content {
+  padding-left: 70px !important; }
+
+ion-content.nopadding {
+  padding: 0px !important; }
+
+.bulb {
+  color: #E67E22; }
+
 body {
   color: #444; }
 
